@@ -1,0 +1,4 @@
+-- KPI021: $ Operating Cash Flow
+SELECT SUM(cash_in) - SUM(cash_out) AS OperatingCashFlow
+FROM cashflow
+WHERE type='Operating';

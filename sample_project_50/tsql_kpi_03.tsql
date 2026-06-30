@@ -1,0 +1,4 @@
+-- KPI: Reactor Conversion %
+SELECT 100.0 * (converted / NULLIF(feed,0)) AS [Reactor Conversion %]
+FROM (SELECT 950 AS converted, 1000 AS feed) a;
+GO

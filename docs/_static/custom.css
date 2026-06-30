@@ -1,0 +1,2709 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap");
+@import url("https://fonts.cdnfonts.com/css/latin-modern-math");
+
+:root {
+  --charcoal: #1C1D20;
+  --business-teal: #004E5A;
+  --technical-slate: #2C3E50;
+  --tech-accent-hover: #14B8A6;
+  --tech-accent-active: #0F766E;
+  --container-bg: #FAFAFA;
+  --accent-tint: #E6F0F2;
+  --system-tint: #F4F6F8;
+  --platinum-border: #E1E8ED;
+  --slate-bg: #F6F7F9;
+  --slate-border: #E1E8ED;
+  --slate-muted: #6B7785;
+  --text-muted: #64748B;
+  --success: #004E5A;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --info: #3B82F6;
+  --matte-olive: #004E5A;
+  --matte-teal: #004E5A;
+  --developer-lineage: #2C3E50;
+  --teal: #004E5A;
+  --muted: #6B7785;
+  --border: #E1E8ED;
+  --code-bg: #111827;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+.rst-content,
+.leap-shell {
+  color: var(--charcoal);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  letter-spacing: -0.01em !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+code,
+kbd,
+pre,
+.mono,
+.highlight pre {
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace !important;
+  font-size: 12.5px !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.6 !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.leap-doc-body {
+  margin: 0;
+  background: var(--slate-bg);
+}
+
+.leap-doc-body > section > h1:first-child,
+body > section > h1:first-child {
+  display: none !important;
+}
+
+.leap-shell {
+  min-height: 100vh;
+  background: var(--slate-bg);
+  color: var(--charcoal);
+}
+
+.leap-topbar {
+  width: 100%;
+  background: #FFFFFF;
+  color: #1C1D20;
+  border-bottom: 1px solid #E2E8F0;
+  padding: 14px 24px;
+}
+
+.leap-topbar-inner {
+  max-width: 1280px;
+  min-height: 52px;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.leap-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.leap-brand-mark {
+  min-width: 210px;
+  width: 210px;
+  height: 42px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 4px;
+}
+
+.leap-brand-mark img {
+  width: auto;
+  max-width: 210px;
+  height: 40px;
+  display: block;
+}
+
+.leap-doc-body summary:focus-visible {
+  outline: 1px solid var(--matte-teal);
+  outline-offset: 2px;
+}
+
+.leap-brand-title {
+  color: #1E293B;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.leap-brand-subtitle {
+  color: #64748B;
+  font-size: 12px;
+}
+
+.leap-status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: #64748B;
+}
+
+.leap-status-row strong {
+  color: var(--success);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.leap-confidence-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--success);
+  display: inline-block;
+}
+
+.leap-growth-badge {
+  background: #F0FDFA;
+  color: var(--success);
+  border: 1px solid #CCFBF1;
+  padding: 2px 6px;
+  font-size: 11px;
+}
+
+.leap-doc-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px 40px;
+}
+
+.leap-dossier-title {
+  margin-bottom: 28px;
+}
+
+.leap-dossier-title-with-badge {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.leap-context-badge {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  border: 1px solid var(--slate-border);
+  background: #fff;
+  padding: 7px;
+}
+
+.leap-context-badge img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.leap-dossier-title h1 {
+  margin: 0 0 8px;
+  color: #0F172A;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  text-transform: none;
+}
+
+.leap-dossier-title p {
+  margin: 0;
+  color: var(--slate-muted);
+  font-size: 14px;
+}
+
+.leap-report-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: -10px 0 24px;
+  padding: 10px;
+  background: #FFFFFF;
+  border: 1px solid var(--slate-border);
+  border-radius: 4px;
+}
+
+.leap-report-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid #E2E8F0;
+  border-radius: 3px;
+  background: #F8FAFC;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.leap-report-nav a:hover,
+.leap-report-nav a:focus-visible {
+  border-color: #99F6E4;
+  background: #F0FDFA;
+  color: var(--matte-teal);
+  outline: none;
+}
+
+.leap-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.blueprint-metrics-bar,
+.blueprint-header-stats {
+  background-color: #FAFAFA !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 8px !important;
+  padding: 14px 24px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 2rem !important;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.blueprint-header-stats .leap-metric-card,
+.metric-indicator-block {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  font-family: Inter, sans-serif;
+}
+
+.metric-indicator-icon,
+.leap-stat-icon {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 28px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+}
+
+.metric-indicator-icon img,
+.leap-stat-icon img {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.blueprint-header-stats .leap-card-caption {
+  display: none;
+}
+
+.metric-indicator-label {
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  color: #718096 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.metric-indicator-value {
+  margin-top: 0 !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  color: #2C3E50 !important;
+  background-color: #E2E8F0;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.leap-metric-card,
+.leap-doc-primary,
+.leap-side-card {
+  background: #fff;
+  border: 1px solid var(--slate-border);
+}
+
+.leap-metric-card {
+  padding: 16px;
+}
+
+.leap-card-label {
+  color: var(--slate-muted);
+  font-size: 11px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.leap-card-value {
+  margin-top: 8px;
+  color: var(--charcoal);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.leap-card-caption {
+  margin-top: 8px;
+  color: var(--slate-muted);
+  font-size: 12px;
+}
+
+.leap-doc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
+  gap: 24px;
+}
+
+.page-index .leap-doc-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.page-index .leap-doc-primary {
+  grid-column: span 8;
+}
+
+.page-index .leap-doc-aside {
+  grid-column: span 4;
+}
+
+.leap-doc-primary {
+  padding: 32px;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.leap-doc-aside {
+  display: grid;
+  align-content: start;
+  gap: 24px;
+}
+
+.leap-metadata-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 16px;
+}
+
+.sidebar-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.sidebar-card h3 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.sidebar-meta-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 12.5px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.sidebar-meta-row:last-child {
+  margin-bottom: 0;
+}
+
+.meta-label {
+  color: var(--muted);
+  flex: 0 0 auto;
+}
+
+.meta-value {
+  color: var(--charcoal);
+  font-weight: 500;
+  text-align: right;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.meta-value.code-font {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px;
+}
+
+.sidebar-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.state-needs-review {
+  background: #FFFBEB;
+  color: #D97706;
+}
+
+.state-needs-review .status-dot {
+  background: #D97706;
+}
+
+.state-validated {
+  background: #F0FDFA;
+  color: var(--success);
+}
+
+.state-validated .status-dot {
+  background: var(--success);
+}
+
+.state-extracted {
+  background: #EFF6FF;
+  color: #2563EB;
+}
+
+.state-extracted .status-dot {
+  background: #2563EB;
+}
+
+.sidebar-btn {
+  display: flex;
+  width: 100%;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  border: none;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.sidebar-btn:last-child {
+  margin-bottom: 0;
+}
+
+.btn-primary {
+  background: var(--charcoal);
+  color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: #2D2F34;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #F1F5F9;
+  color: var(--charcoal);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background: #E2E8F0;
+  color: var(--charcoal);
+}
+
+.leap-nav-card {
+  display: grid;
+  gap: 16px;
+}
+
+.leap-nav-group {
+  display: grid;
+  gap: 6px;
+}
+
+.leap-nav-heading {
+  color: var(--muted);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.leap-nav-group a {
+  display: block;
+  padding: 5px 0 5px 12px;
+  border-left: 2px solid #E2E8F0;
+  color: var(--charcoal);
+  font-size: 12.5px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.leap-nav-group a:hover,
+.leap-nav-group a:focus-visible {
+  border-left-color: var(--matte-teal);
+  color: var(--matte-teal);
+  outline: none;
+}
+
+.leap-side-card {
+  padding: 24px;
+}
+
+.leap-side-card h2 {
+  margin: 0 0 16px;
+  color: #1E293B;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  text-transform: none;
+}
+
+.leap-side-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.leap-side-row span,
+.leap-muted {
+  color: var(--slate-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.mono {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.leap-raci-grid {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.leap-raci-grid span {
+  border: 1px solid var(--slate-border);
+  padding: 8px 10px;
+}
+
+.raci-badge,
+.leap-raci-grid span:nth-child(odd) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  font-weight: 700;
+  font-size: 11px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+
+.raci-a,
+.leap-raci-a { background: #1C1D20; color: #FFFFFF; border-color: #1C1D20 !important; text-align: center; }
+.raci-r,
+.leap-raci-r { background: #0D9488; color: #FFFFFF; border-color: #0D9488 !important; text-align: center; }
+.raci-c,
+.leap-raci-c { background: #E2E8F0; color: #475569; border: 1px solid #CBD5E1 !important; text-align: center; }
+.raci-i,
+.leap-raci-i { background: #F1F5F9; color: #64748B; border-color: #F1F5F9 !important; text-align: center; }
+
+.leap-doc-primary > section:first-child > h1:first-child,
+.leap-doc-primary > .section:first-child > h1:first-child,
+.leap-doc-primary > h1:first-child {
+  display: none;
+}
+
+.leap-doc-primary .toctree-wrapper > ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.leap-doc-primary .toctree-wrapper li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.leap-doc-primary .toctree-wrapper ul ul {
+  display: block !important;
+  grid-template-columns: none !important;
+  padding-left: 20px !important;
+  margin: 8px 0 0 !important;
+}
+
+.leap-doc-primary .toctree-wrapper ul ul li {
+  margin: 4px 0;
+  padding-left: 12px;
+}
+
+.leap-doc-primary .toctree-wrapper ul ul a {
+  min-height: 0;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: #64748B;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.leap-doc-primary .toctree-wrapper a {
+  display: block;
+  min-height: 42px;
+  padding: 12px;
+  background: #FDFDFD;
+  border: 1px solid var(--slate-border);
+  color: var(--charcoal);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.leap-doc-primary .toctree-wrapper a:hover {
+  background: var(--slate-bg);
+  color: var(--success);
+}
+
+.leap-doc-primary .toctree-wrapper .caption-text {
+  display: block;
+  margin: 22px 0 10px;
+  color: #64748B;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.leap-doc-primary .toctree-wrapper:first-of-type .caption-text {
+  margin-top: 0;
+}
+
+.leap-doc-primary .toctree-wrapper {
+  margin-bottom: 26px;
+}
+
+.leap-doc-primary .toctree-wrapper > ul > li > a {
+  position: relative;
+  padding-left: 16px;
+}
+
+.leap-doc-primary .toctree-wrapper > ul > li > a::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 14px;
+  bottom: 14px;
+  width: 2px;
+  background: var(--matte-teal);
+}
+
+.raci-directory-admin {
+  display: grid;
+  gap: 24px;
+}
+
+.raci-directory-form {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 24px;
+  padding: 20px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.raci-directory-form h2 {
+  margin: 4px 0 8px !important;
+  color: var(--charcoal) !important;
+  font-size: 18px !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+.raci-directory-form p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.raci-provision-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.raci-provision-form label {
+  display: grid;
+  gap: 6px;
+}
+
+.raci-provision-form span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.raci-provision-form input,
+.raci-provision-form select {
+  width: 100%;
+  height: 38px;
+  border: 1px solid var(--border);
+  background: #FFFFFF;
+  color: var(--charcoal);
+  padding: 0 10px;
+  font: 13px Inter, sans-serif;
+}
+
+.raci-provision-form button {
+  height: 38px;
+  border: 0;
+  background: var(--charcoal);
+  color: #FFFFFF;
+  font: 600 12px Inter, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+.raci-directory-table-wrap {
+  overflow-x: auto;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.raci-directory-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.raci-directory-table th {
+  background: #F8FAFC;
+  color: var(--muted);
+  padding: 12px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+
+.raci-directory-table td {
+  padding: 12px;
+  border-bottom: 1px solid #EEF2F7;
+  vertical-align: top;
+}
+
+.raci-directory-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.leap-doc-primary .section,
+.leap-doc-primary section {
+  margin-bottom: 24px;
+}
+
+.page-discovery_report .leap-doc-primary #kpi-discovery-report > section {
+  margin: 0 0 22px;
+  padding: 18px 18px 6px;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  background: #FFFFFF;
+}
+
+.page-discovery_report .leap-doc-primary #kpi-discovery-report > section > h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 34px;
+  margin: -18px -18px 16px !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  background: #F8FAFC;
+  color: #0F172A !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: .04em !important;
+  text-transform: uppercase !important;
+}
+
+.page-discovery_report .leap-doc-primary #kpi-discovery-report > section > h2::before {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  border-radius: 3px;
+  background: #0D9488;
+  color: #FFFFFF;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.page-discovery_report #scan-overview > h2::before { content: "01"; }
+.page-discovery_report #confidence-summary > h2::before { content: "02"; }
+.page-discovery_report #languages-detected > h2::before { content: "03"; }
+.page-discovery_report #detection-methods > h2::before { content: "04"; }
+.page-discovery_report #governance-summary > h2::before { content: "05"; }
+.page-discovery_report #possible-duplicate-kpi-names > h2::before { content: "06"; }
+.page-discovery_report #kpi-inventory > h2::before { content: "07"; }
+
+.page-discovery_report .leap-doc-primary #kpi-discovery-report > section table.docutils {
+  margin-top: 0 !important;
+}
+
+.leap-doc-primary table.docutils {
+  width: 100% !important;
+  max-width: 100% !important;
+  table-layout: fixed;
+  border-collapse: collapse !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02) !important;
+  overflow: hidden;
+  margin: 20px 0 !important;
+}
+
+.leap-doc-primary table.docutils th {
+  background: #F8FAFC !important;
+  color: #475569 !important;
+  font-weight: 500 !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 10px 14px !important;
+  border: none !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  text-align: left !important;
+}
+
+.leap-doc-primary table.docutils td {
+  padding: 12px 14px !important;
+  font-size: 13px !important;
+  color: #334155 !important;
+  border: none !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.leap-doc-primary table.docutils td p {
+  margin: 0;
+}
+
+.leap-doc-primary table.docutils tr:last-child td {
+  border-bottom: none !important;
+}
+
+.leap-doc-primary table.docutils tr:hover {
+  background-color: #F8FAFC !important;
+}
+
+.leap-toggle-container {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--slate-border);
+  padding: 2px;
+  background: #fff;
+  margin-bottom: 16px;
+}
+
+.leap-toggle-btn {
+  min-height: 28px;
+  padding: 4px 12px;
+  border: none;
+  background: transparent;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 12px;
+  color: var(--slate-muted);
+  cursor: pointer;
+}
+
+.leap-toggle-btn.active {
+  background: var(--charcoal);
+  color: #fff;
+  font-weight: 500;
+}
+
+.leap-toggle-btn[data-perspective="business"].active {
+  background-color: #008080 !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+}
+
+.leap-toggle-btn[data-perspective="developer"].active {
+  background-color: #94064D !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+}
+
+.leap-toggle-btn:focus-visible {
+  outline: 1px solid var(--matte-teal);
+  outline-offset: 2px;
+}
+
+.leap-annotated-equation,
+.leap-annotated-formula-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 8px;
+  max-width: 100%;
+  margin: 4px 0 18px;
+  padding: 16px 12px;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  overflow-x: auto;
+}
+
+.leap-formula-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-width: 72px;
+  max-width: 190px;
+  padding: 0 16px;
+  opacity: 0.70;
+  cursor: pointer;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.leap-formula-node:hover,
+.leap-formula-node:focus-within {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.operator-node .leap-math-lbl {
+  background: #FFFFFF;
+}
+
+.operator-node .leap-math-render {
+  color: #64748B;
+}
+
+.leap-math-lbl {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 190px;
+  min-height: 26px;
+  padding: 4px 10px;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  background: #F1F5F9;
+  color: var(--muted);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  overflow-wrap: anywhere;
+  transition: all 0.2s ease;
+}
+
+.leap-math-lbl.long-line {
+  white-space: normal;
+}
+
+.leap-math-pointer {
+  width: 1px;
+  height: 20px;
+  border-left: 1px dashed #94A3B8;
+  margin: 6px 0;
+  position: relative;
+  transition: border-left 0.2s ease;
+}
+
+.leap-math-pointer::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -2px;
+  width: 3px;
+  height: 3px;
+  background-color: #94A3B8;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.leap-math-render {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding-top: 4px;
+  color: var(--charcoal);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+  overflow-wrap: anywhere;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.leap-formula-node:hover .leap-math-lbl,
+.leap-formula-node:focus-within .leap-math-lbl {
+  border-color: var(--teal);
+  background: var(--teal);
+  color: #FFFFFF;
+}
+
+.leap-formula-node:hover .leap-math-pointer,
+.leap-formula-node:focus-within .leap-math-pointer {
+  border-left: 1px solid var(--teal);
+}
+
+.leap-formula-node:hover .leap-math-pointer::after,
+.leap-formula-node:focus-within .leap-math-pointer::after {
+  background-color: var(--teal);
+  transform: scale(1.4);
+}
+
+.leap-formula-node:hover .leap-math-render,
+.leap-formula-node:focus-within .leap-math-render {
+  color: var(--teal);
+  transform: translateY(1px);
+}
+
+.leap-eq-operator {
+  min-width: 18px;
+  padding-bottom: 10px;
+  color: #64748B;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 18px;
+  line-height: 1;
+  text-align: center;
+}
+
+.leap-annotated-equation[data-perspective="developer"] .leap-math-lbl {
+  background: #FFFFFF;
+  color: var(--slate-muted);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  letter-spacing: -0.015em;
+}
+
+.leap-annotated-equation[data-perspective="developer"] .leap-math-pointer {
+  border-left-color: var(--slate-muted);
+}
+
+.leap-annotated-equation[data-perspective="developer"] .leap-math-pointer::after {
+  background-color: var(--slate-muted);
+}
+
+.leap-annotated-equation[data-perspective="developer"] .leap-formula-node:hover .leap-math-lbl,
+.leap-annotated-equation[data-perspective="developer"] .leap-formula-node:focus-within .leap-math-lbl {
+  border-color: var(--developer-lineage);
+  background: var(--developer-lineage);
+  color: #FFFFFF;
+}
+
+.leap-annotated-equation[data-perspective="developer"] .leap-formula-node:hover .leap-math-pointer,
+.leap-annotated-equation[data-perspective="developer"] .leap-formula-node:focus-within .leap-math-pointer {
+  border-left-color: var(--developer-lineage);
+}
+
+.leap-annotated-equation[data-perspective="developer"] .leap-formula-node:hover .leap-math-pointer::after,
+.leap-annotated-equation[data-perspective="developer"] .leap-formula-node:focus-within .leap-math-pointer::after {
+  background-color: var(--developer-lineage);
+}
+
+.leap-annotated-equation[data-perspective="developer"] .leap-formula-node:hover .leap-math-render,
+.leap-annotated-equation[data-perspective="developer"] .leap-formula-node:focus-within .leap-math-render {
+  color: var(--developer-lineage);
+}
+
+.leap-code-lineage {
+  margin: -4px 0 18px;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+}
+
+.leap-code-lineage-title {
+  padding: 10px 12px;
+  border-bottom: 1px solid #E2E8F0;
+  background: #F8FAFC;
+  color: #334155;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.leap-code-lineage-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.leap-code-lineage-row:last-child {
+  border-bottom: 0;
+}
+
+.leap-code-lineage-code {
+  color: #0F172A;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.leap-code-lineage-role {
+  color: #64748B;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.leap-doc-primary code,
+.leap-doc-primary .docutils.literal,
+.leap-doc-primary table.docutils .pre {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 2px 6px;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  background: #F1F5F9;
+  color: #334155;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.leap-doc-primary table.docutils code,
+.leap-doc-primary table.docutils .docutils.literal,
+.leap-doc-primary table.docutils .pre {
+  max-width: 100%;
+  padding: 2px 4px !important;
+  font-size: 11.5px !important;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+
+.docutils.literal.notranslate {
+  background: #F1F5F9 !important;
+  color: #334155 !important;
+  border: 1px solid #E2E8F0 !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-size: 12px !important;
+}
+
+@media (max-width: 980px) {
+  .leap-topbar-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .leap-dossier-title-with-badge {
+    align-items: flex-start;
+  }
+
+  .leap-context-badge {
+    width: 40px;
+    height: 40px;
+  }
+
+  .leap-metric-grid,
+  .leap-doc-grid,
+  .page-index .leap-doc-grid,
+  .leap-doc-primary .toctree-wrapper ul {
+    grid-template-columns: 1fr;
+  }
+
+  .page-index .leap-doc-primary,
+  .page-index .leap-doc-aside {
+    grid-column: auto;
+  }
+
+  .leap-metadata-sidebar {
+    padding-left: 0;
+  }
+
+  .leap-code-lineage-row {
+    grid-template-columns: 1fr;
+  }
+
+  .raci-directory-form,
+  .raci-provision-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rst-content h1,
+.leap-doc-primary h1 {
+  color: #0F172A !important;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.025em !important;
+  text-transform: none !important;
+  margin-top: 0 !important;
+  margin-bottom: 20px !important;
+  border-bottom: none !important;
+}
+
+.rst-content h2,
+.rst-content h3,
+.leap-doc-primary h2,
+.leap-doc-primary h3 {
+  color: #1E293B !important;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-size: 16px;
+  font-weight: 500 !important;
+  letter-spacing: -0.015em !important;
+  text-transform: none !important;
+  margin-top: 24px !important;
+  margin-bottom: 12px !important;
+  border-bottom: none !important;
+}
+
+.rst-content h2,
+.leap-doc-primary h2 {
+  border-bottom: 1px solid #F1F5F9 !important;
+  padding-bottom: 8px;
+}
+
+.rst-content h3,
+.leap-doc-primary h3 {
+  font-size: 14px;
+}
+
+.rst-content table.docutils {
+  background: #fff;
+  width: 100% !important;
+  max-width: 100% !important;
+  table-layout: fixed;
+  border-collapse: collapse !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02) !important;
+  overflow: hidden;
+  margin: 20px 0 !important;
+}
+
+.rst-content table.docutils th {
+  background: #F8FAFC !important;
+  color: #475569 !important;
+  font-weight: 500 !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 10px 14px !important;
+  border: none !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  text-align: left !important;
+}
+
+/* --- LEAP global visual standardization sweep --- */
+.leap-card-title,
+.section-header {
+  margin: 0 !important;
+  color: #1E293B !important;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase !important;
+  line-height: 1.3 !important;
+}
+
+.leap-nav-group {
+  gap: 4px;
+}
+
+.leap-nav-group a {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 6px 10px 6px 12px !important;
+  border-left: 3px solid transparent !important;
+  background: transparent !important;
+  color: var(--charcoal) !important;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.leap-nav-group a:hover,
+.leap-nav-group a:focus-visible,
+.leap-nav-group a.active {
+  border-left-color: var(--matte-teal) !important;
+  background: transparent !important;
+  color: var(--matte-teal) !important;
+  outline: none !important;
+}
+
+.action-card .sidebar-btn {
+  justify-content: flex-start;
+  min-height: 36px;
+  padding: 8px 12px !important;
+  border: 1px solid var(--border) !important;
+  border-left: 3px solid transparent !important;
+  border-radius: 4px !important;
+  background: #FFFFFF !important;
+  color: var(--charcoal) !important;
+  text-align: left;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.action-card .sidebar-btn:hover,
+.action-card .sidebar-btn:focus-visible {
+  border-color: transparent !important;
+  background-color: #008080 !important;
+  color: #ffffff !important;
+  outline: none !important;
+}
+
+#open-email-draft-btn:hover,
+#open-email-draft-btn:focus-visible,
+.sidebar-btn:hover,
+.sidebar-btn:focus-visible {
+  background-color: #008080 !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+}
+
+.formula-panel,
+.review-queue-card,
+.sidebar-card,
+.leap-main-content-section {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 8px !important;
+  padding: 24px !important;
+  background-color: #f9f9f9 !important;
+}
+
+hr,
+.border-bottom,
+.border-top {
+  border: none !important;
+  height: 0 !important;
+  margin: 16px 0 !important;
+}
+
+.leap-business-formula-math mjx-container,
+.leap-business-formula-math mjx-container *,
+.formula-panel .math-equation mjx-container,
+.formula-panel .math-equation mjx-container * {
+  font-family: "Latin Modern Math", "STIX Two Math", "Cambria Math", "Times New Roman", Inter, sans-serif !important;
+  font-style: normal !important;
+}
+
+.leap-annotated-equation,
+.leap-annotated-formula-wrapper,
+.mjx-chtml,
+mjx-container[jax="CHTML"] {
+  font-family: "Latin Modern Math", Inter, sans-serif !important;
+  font-style: normal !important;
+}
+
+.mjx-char,
+.mjx-char *,
+mjx-c,
+mjx-c * {
+  font-style: normal !important;
+  font-variant-numeric: lining-nums !important;
+}
+
+.leap-business-formula-math mjx-mo,
+.formula-panel .math-equation mjx-mo {
+  color: var(--matte-teal) !important;
+}
+
+/* Force MathJax text elements to honor the chosen interface font. */
+.MathJax mtext,
+.MathJax text,
+mjx-mtext,
+mjx-mtext *,
+.leap-business-formula-math mjx-mtext,
+.leap-business-formula-math mjx-mtext *,
+.formula-panel .math-equation mjx-mtext,
+.formula-panel .math-equation mjx-mtext * {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-style: normal !important;
+}
+
+.leap-code-lineage code,
+.leap-code-lineage pre {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace !important;
+}
+
+.leap-business-formula-math mjx-mn,
+.formula-panel .math-equation mjx-mn {
+  color: #3F5F46 !important;
+}
+
+.leap-business-formula-math mjx-line,
+.formula-panel .math-equation mjx-line {
+  border-color: var(--matte-teal) !important;
+}
+
+/* Ensure formula and MathJax containers never collapse structurally. */
+.leap-annotated-equation,
+.leap-annotated-formula-wrapper {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 2rem !important;
+  overflow-x: auto !important;
+}
+
+.MathJax,
+mjx-container {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 2rem !important;
+  overflow-x: auto !important;
+}
+
+/* Warning/Review Box Layout Optimization */
+.review-queue-card.data-status-alert {
+  background-color: #FFF9E6 !important;
+  border-left: 4px solid #D97706 !important;
+  padding: 16px 20px !important;
+  margin-bottom: 24px !important;
+}
+
+.review-status-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.gov-conflict-subpanel {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #FFF5F5;
+  border: 1px solid #FEB2B2;
+  border-radius: 6px;
+}
+
+.gov-conflict-subpanel span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9B2C2C;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.gov-conflict-subpanel p {
+  margin: 4px 0 0;
+  font-size: 0.75rem;
+  color: #C53030;
+  line-height: 1.35;
+}
+
+.warning-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 26px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #FFFBEB;
+  color: #B45309;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.review-message-body p,
+.review-queue-text-display {
+  color: #92400E !important;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 8px 0 0 0;
+}
+
+/* Custom Code Panel & Source Evidence Styling */
+.leap-code-lineage,
+.leap-code-lineage pre,
+#source-evidence pre,
+.highlight,
+div[id^="source-evidence"] pre,
+.highlight pre,
+.highlight-python pre,
+.highlight-javascript pre,
+.highlight-sql pre,
+.highlight-text pre {
+  background-color: #1E1E2E !important;
+  color: #CDD6F4 !important;
+  font-family: "JetBrains Mono", "Courier New", monospace !important;
+  font-size: 0.92rem !important;
+  line-height: 1.6 !important;
+  border: 1px solid #2C3E50 !important;
+  border-radius: 8px !important;
+  padding: 18px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  overflow-x: auto !important;
+}
+
+.leap-code-lineage-code,
+.leap-code-lineage-role,
+.leap-code-lineage-code *,
+.leap-code-lineage-row,
+.leap-code-lineage table,
+.leap-code-lineage td,
+.leap-code-lineage th {
+  color: #CDD6F4 !important;
+  font-family: "JetBrains Mono", "Courier New", monospace !important;
+}
+
+.leap-code-lineage-title {
+  color: #89B4FA !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.leap-code-lineage th {
+  color: #89B4FA !important;
+  border-bottom: 2px solid #313244 !important;
+}
+
+.leap-code-lineage-row {
+  border-bottom: 1px solid #313244 !important;
+}
+
+.leap-code-lineage pre::-webkit-scrollbar,
+div[id^="source-evidence"] pre::-webkit-scrollbar {
+  height: 6px;
+}
+
+.leap-code-lineage pre::-webkit-scrollbar-thumb,
+div[id^="source-evidence"] pre::-webkit-scrollbar-thumb {
+  background: #45475a;
+  border-radius: 4px;
+}
+
+.leap-code-lineage,
+.view-source-context-card {
+  background: transparent !important;
+  padding: 0 !important;
+  margin-top: 16px;
+}
+
+/* Color Highlights for Python and source code elements inside LEAP */
+.highlight .k { color: #cba6f7 !important; font-weight: 600; }
+.highlight .nf { color: #89b4fa !important; }
+.highlight .nn { color: #f9e2af !important; }
+.highlight .s2,
+.highlight .s1 { color: #a6e3a1 !important; }
+.highlight .mi,
+.highlight .mf { color: #fab387 !important; }
+.highlight .c1 { color: #6c7086 !important; font-style: italic !important; }
+
+#source-evidence .highlight .k {
+  color: #CBA6F7 !important;
+  font-weight: 700 !important;
+}
+
+#source-evidence .highlight .mi,
+#source-evidence .highlight .mf {
+  color: #FAB387 !important;
+}
+
+.page-discovery_report .leap-context-badge {
+  background: transparent !important;
+  border: 0 !important;
+  color: inherit !important;
+  padding: 0 !important;
+}
+
+.page-discovery_report .leap-context-badge img {
+  background: transparent !important;
+}
+
+.source-link-box *,
+.source-link-box code,
+.source-link-box a {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.page-discovery_report .leap-doc-primary caption,
+.page-discovery_report .leap-doc-primary caption span,
+.page-discovery_report #possible-duplicate-kpi-names p,
+.page-discovery_report #possible-duplicate-kpi-names li,
+.page-discovery_report #governance-summary td,
+.page-discovery_report #detection-methods td,
+.page-discovery_report #scan-overview td {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-size: 14px !important;
+  color: var(--text-muted) !important;
+  line-height: 1.55 !important;
+}
+
+.page-discovery_report .leap-doc-primary table.docutils caption {
+  padding: 10px 0 8px !important;
+  text-align: left !important;
+}
+
+.rst-content table.docutils td,
+.rst-content table.docutils td p {
+  margin: 0;
+}
+
+.rst-content table.docutils td {
+  padding: 12px 14px !important;
+  font-size: 13px !important;
+  color: #334155 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+  overflow-wrap: anywhere;
+}
+
+.rst-content table.docutils tr:last-child td {
+  border-bottom: none !important;
+}
+
+.rst-content table.docutils tr:hover {
+  background-color: #F8FAFC !important;
+}
+
+.rst-content > ul,
+.rst-content .toctree-wrapper > ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.rst-content ul ul {
+  padding-left: 20px !important;
+  margin-left: 0 !important;
+}
+
+.rst-content ul li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 8px;
+  font-size: 13.5px;
+  color: #334155;
+}
+
+.rst-content ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #94A3B8;
+}
+
+.rst-content hr,
+.leap-doc-primary hr,
+footer hr {
+  display: none !important;
+}
+
+/* Global footer hide rule removed */
+
+.leap-footer-shell {
+  margin-top: 28px;
+  background: var(--slate-bg);
+  border-top: 1px solid var(--slate-border);
+}
+
+.leap-footer {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 24px;
+  color: var(--slate-muted);
+  font-size: 12px;
+}
+
+.leap-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.leap-footer a {
+  color: var(--slate-muted);
+  text-decoration: none;
+}
+
+.leap-footer a:hover {
+  color: var(--success);
+}
+
+.headerlink {
+  display: none !important;
+}
+
+.rst-content .admonition {
+  background: #fff;
+  border: 1px solid var(--slate-border);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.rst-content .admonition-title {
+  background: var(--code-bg) !important;
+  color: #fff;
+  border-radius: 0;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.rst-content code,
+.rst-content tt,
+.highlight pre {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.highlight {
+  background: #1e1e2e;
+  border: none;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.highlight pre {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  padding: 18px 24px;
+}
+
+a {
+  color: var(--info);
+}
+
+a:hover {
+  color: var(--success);
+}
+
+/* --- LEAP Executive Color Strategy: Deep Teal & Technical Slate --- */
+.leap-shell,
+.leap-page,
+.leap-doc-body {
+  background: var(--slate-bg) !important;
+}
+
+.leap-doc-primary,
+.leap-metric-card,
+.leap-side-card,
+.dossier-card,
+.formula-panel,
+.sidebar-card,
+.review-queue-card,
+.semantic-item,
+.literate-step,
+.leap-annotated-equation,
+.leap-annotated-formula-wrapper {
+  background-color: var(--container-bg) !important;
+  border-color: var(--platinum-border) !important;
+}
+
+.business-reading-card .leap-card-title,
+.business-reading-card .micro-label,
+.formula-panel > .micro-label,
+.leap-business-formula-math,
+.leap-business-formula-math mjx-container,
+.leap-business-formula-math mjx-mo,
+.formula-panel .math-equation mjx-mo {
+  color: var(--business-teal) !important;
+}
+
+.business-reading-card {
+  box-shadow: inset 3px 0 0 var(--business-teal) !important;
+}
+
+.business-reading-card .semantic-item,
+.business-reading-card .literate-step {
+  background: #FFFFFF !important;
+}
+
+.system-identifier-card,
+.system-card,
+.source-card {
+  background-color: var(--system-tint) !important;
+}
+
+.system-identifier-card .leap-card-title,
+.system-identifier-card .label,
+.system-identifier-card .value,
+.system-identifier-card .font-mono,
+.source-card .meta-value,
+.meta-value.code-font,
+.hash-badge {
+  color: var(--technical-slate) !important;
+}
+
+.system-identifier-card {
+  border-color: var(--platinum-border) !important;
+  box-shadow: inset 3px 0 0 var(--technical-slate) !important;
+}
+
+.leap-toggle-container {
+  background: #FFFFFF !important;
+  border-color: var(--platinum-border) !important;
+  border-radius: 6px !important;
+}
+
+.leap-toggle-btn {
+  color: var(--text-muted) !important;
+  border-radius: 4px !important;
+}
+
+.leap-toggle-btn[data-perspective="business"].active {
+  background-color: var(--accent-tint) !important;
+  color: var(--business-teal) !important;
+  box-shadow: inset 0 0 0 1px rgba(0, 78, 90, 0.18) !important;
+}
+
+.leap-toggle-btn[data-perspective="developer"].active {
+  background-color: var(--tech-accent-active) !important;
+  color: #FFFFFF !important;
+  border-color: var(--tech-accent-active) !important;
+  box-shadow: 0 2px 4px rgba(20, 184, 166, 0.18) !important;
+}
+
+.leap-toggle-btn[data-perspective="developer"]:hover,
+.leap-toggle-btn[data-perspective="developer"]:focus-visible {
+  background-color: var(--tech-accent-hover) !important;
+  color: #FFFFFF !important;
+  border-color: var(--tech-accent-hover) !important;
+  box-shadow: 0 2px 4px rgba(20, 184, 166, 0.2) !important;
+}
+
+.leap-math-lbl {
+  background: var(--accent-tint) !important;
+  border-color: var(--platinum-border) !important;
+  color: var(--business-teal) !important;
+}
+
+.leap-math-pointer {
+  border-left-color: rgba(0, 78, 90, 0.42) !important;
+}
+
+.leap-math-pointer::after {
+  background-color: var(--business-teal) !important;
+}
+
+.leap-math-render {
+  color: var(--charcoal) !important;
+}
+
+.leap-formula-node:hover .leap-math-lbl,
+.leap-formula-node:focus-within .leap-math-lbl {
+  background: var(--business-teal) !important;
+  border-color: var(--business-teal) !important;
+  color: #FFFFFF !important;
+}
+
+.leap-formula-node:hover .leap-math-pointer,
+.leap-formula-node:focus-within .leap-math-pointer {
+  border-left-color: var(--business-teal) !important;
+}
+
+.leap-formula-node:hover .leap-math-render,
+.leap-formula-node:focus-within .leap-math-render {
+  color: var(--business-teal) !important;
+}
+
+.leap-annotated-equation[data-perspective="developer"] {
+  background: var(--system-tint) !important;
+}
+
+.leap-annotated-equation[data-perspective="developer"] .leap-math-lbl {
+  background: #FFFFFF !important;
+  border-color: var(--platinum-border) !important;
+  color: var(--technical-slate) !important;
+}
+
+.leap-annotated-equation[data-perspective="developer"] .leap-math-pointer {
+  border-left-color: rgba(44, 62, 80, 0.45) !important;
+}
+
+.leap-annotated-equation[data-perspective="developer"] .leap-math-pointer::after {
+  background-color: var(--technical-slate) !important;
+}
+
+.leap-annotated-equation[data-perspective="developer"] .leap-formula-node:hover .leap-math-lbl,
+.leap-annotated-equation[data-perspective="developer"] .leap-formula-node:focus-within .leap-math-lbl {
+  background: var(--technical-slate) !important;
+  border-color: var(--technical-slate) !important;
+  color: #FFFFFF !important;
+}
+
+.leap-annotated-equation[data-perspective="developer"] .leap-formula-node:hover .leap-math-pointer,
+.leap-annotated-equation[data-perspective="developer"] .leap-formula-node:focus-within .leap-math-pointer {
+  border-left-color: var(--technical-slate) !important;
+}
+
+.leap-annotated-equation[data-perspective="developer"] .leap-formula-node:hover .leap-math-render,
+.leap-annotated-equation[data-perspective="developer"] .leap-formula-node:focus-within .leap-math-render {
+  color: var(--technical-slate) !important;
+}
+
+/* ---- ISO Governance visual decoupling (enforced) ---- */
+/* technical terminals: strict dark style */
+.leap-source-evidence,
+div[id^='source-evidence'],
+.leap-code-lineage,
+div[class^="highlight"],
+.highlight {
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    border: 1px solid #2C3E50 !important;
+    background-color: #1E1E2E !important;
+    padding: 0 !important;
+}
+div[class^='highlight'] pre, .highlight pre, .leap-code-lineage pre {
+    border: none !important;
+    background-color: transparent !important;
+    margin: 0 !important;
+    padding: 18px !important;
+}
+
+/* executive panels: pristine light corporate style */
+.sidebar-card,
+.leap-nav-card,
+.formula-panel,
+.review-queue-card,
+.data-status-alert {
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    border: 1px solid #E2E8F0 !important;
+    background-color: #FFFFFF !important;
+    padding: 20px !important;
+    box-sizing: border-box;
+}
+
+.sidebar-card h3, .leap-nav-card h3, .leap-nav-heading {
+    color: #2C3E50 !important;
+}
+
+/* Excellence in Math: centered and emboldened for executive readability. */
+.leap-business-formula-math,
+.leap-annotated-equation,
+.leap-annotated-formula-wrapper,
+mjx-container[display="true"] {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  margin: 25px auto !important;
+  font-size: 1.25rem !important;
+  width: 100% !important;
+}
+
+/* Technical cohesion: source evidence and developer lineage stay on a dark evidence shell. */
+#source-evidence pre,
+#source-evidence .highlight,
+#source-evidence .highlight pre,
+.source-code-dropdown,
+.source-code-dropdown .highlight,
+.source-code-dropdown .highlight pre,
+div[id^="source-evidence"] pre {
+  background-color: #1E1E2E !important;
+  color: #CDD6F4 !important;
+  font-family: "JetBrains Mono", monospace !important;
+  padding: 18px !important;
+  border-radius: 8px !important;
+  border: 1px solid #2C3E50 !important;
+  overflow-x: auto !important;
+}
+
+.leap-code-lineage {
+  background-color: #181825 !important;
+  border: 1px solid var(--business-teal) !important;
+  border-radius: 8px !important;
+  padding: 20px !important;
+  margin-top: 15px !important;
+}
+
+.leap-code-lineage-row,
+.leap-code-lineage-code,
+.leap-code-lineage-code *,
+.leap-code-lineage-role,
+.leap-code-lineage table,
+.leap-code-lineage td,
+.leap-code-lineage th {
+  color: #CDD6F4 !important;
+  font-family: "JetBrains Mono", monospace !important;
+}
+
+.leap-code-lineage th,
+.leap-code-lineage-title {
+  color: #89B4FA !important;
+  border-bottom-color: #313244 !important;
+}
+
+.leap-nav-group a:hover,
+.leap-nav-group a:focus-visible,
+.leap-nav-group a.active,
+.action-btn:hover,
+.action-btn:focus-visible,
+.action-btn-primary:hover,
+.action-btn-primary:focus-visible {
+  border-left-color: var(--business-teal) !important;
+  color: var(--business-teal) !important;
+}
+
+.sidebar-btn:hover,
+.sidebar-btn:focus-visible,
+#open-email-draft-btn:hover,
+#open-email-draft-btn:focus-visible {
+  background-color: var(--business-teal) !important;
+  color: #FFFFFF !important;
+}
+
+.raci-r {
+  background: var(--business-teal) !important;
+}
+
+.source-chip,
+.growth-badge,
+.state-validated,
+.status-badge.state-validated {
+  color: var(--business-teal) !important;
+  background-color: var(--accent-tint) !important;
+  border-color: rgba(0, 78, 90, 0.18) !important;
+}
+
+.leap-precision-divider,
+hr.leap-precision-divider {
+  display: block !important;
+  border: 0 !important;
+  height: 1px !important;
+  background: linear-gradient(to right, rgba(225, 232, 237, 0.1), rgba(0, 78, 90, 0.4) 15%, rgba(0, 78, 90, 0.4) 85%, rgba(225, 232, 237, 0.1)) !important;
+  margin: 45px 0 25px 0 !important;
+  padding: 0 !important;
+}
+
+/* System-wide corner smoothing: prevents nested code backgrounds from cutting square corners. */
+.leap-code-lineage,
+.leap-source-evidence,
+.leap-source-wrap,
+[id="source-evidence"],
+section#source-evidence {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.leap-code-lineage pre,
+.leap-source-evidence pre,
+#source-evidence .highlight pre,
+.source-code-dropdown .highlight pre,
+.highlight,
+.highlight pre,
+.code-panel pre,
+code {
+  border-radius: 6px !important;
+}
+
+.formula-panel,
+.review-queue-card,
+.sidebar-card,
+.leap-nav-card {
+  border-radius: 8px !important;
+}
+
+.leap-toggle-btn {
+  border-radius: 4px !important;
+}
+
+/* Figma-style section headers: clear anchors without boxed title fatigue. */
+.leap-doc-primary section > h2,
+.leap-doc-primary section > h3,
+.rst-content section > h2,
+.rst-content section > h3 {
+  position: relative !important;
+  padding-bottom: 10px !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1.5rem !important;
+  color: #2D3748 !important;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+}
+
+.leap-doc-primary section > h2::after,
+.leap-doc-primary section > h3::after,
+.rst-content section > h2::after,
+.rst-content section > h3::after {
+  content: "" !important;
+  position: absolute !important;
+  bottom: -1px !important;
+  left: 0 !important;
+  width: 60px !important;
+  height: 3px !important;
+  background-color: #4A5568 !important;
+  border-radius: 2px !important;
+}
+
+.dossier-card > .leap-card-title,
+.walkthrough-heading > .leap-card-title {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  padding-bottom: 10px !important;
+  margin-top: 0 !important;
+  margin-bottom: 18px !important;
+  color: #2D3748 !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+}
+
+.dossier-card > .leap-card-title::after,
+.walkthrough-heading > .leap-card-title::after {
+  content: "" !important;
+  position: absolute !important;
+  bottom: -1px !important;
+  left: 0 !important;
+  width: 60px !important;
+  height: 3px !important;
+  background-color: #4A5568 !important;
+  border-radius: 2px !important;
+}
+
+.business-reading-card > .leap-card-title::after,
+.formula-panel .leap-card-title::after {
+  background-color: var(--business-teal) !important;
+}
+
+.system-identifier-card > .leap-card-title::after,
+.source-card h3::after {
+  background-color: var(--technical-slate) !important;
+}
+
+.sidebar-card h3 {
+  position: relative !important;
+  padding-bottom: 9px !important;
+  margin: 0 0 14px 0 !important;
+  color: #2D3748 !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+}
+
+.sidebar-card h3::after {
+  content: "" !important;
+  position: absolute !important;
+  bottom: -1px !important;
+  left: 0 !important;
+  width: 42px !important;
+  height: 2px !important;
+  background-color: var(--tech-accent-active) !important;
+  border-radius: 2px !important;
+}
+
+/* ==========================================================================
+   DIRECTOR'S DIRECTIVE: ABSOLUTE SHARP CORNER ERADICATION
+   ========================================================================== */
+.leap-code-lineage,
+.leap-source-evidence,
+.evidence-inline,
+div[id^="source-evidence"],
+section[id^="source-evidence"],
+section#source-evidence,
+div[class^="highlight"],
+.highlight,
+.highlight pre,
+div[class^="highlight"] pre,
+.leap-code-lineage pre,
+.code-panel pre {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.highlight pre code,
+div[class^="highlight"] pre code,
+.leap-code-lineage pre code {
+  border-radius: 6px !important;
+}
+
+.sidebar-card,
+.leap-nav-card,
+.review-queue-card,
+.formula-panel,
+.data-status-alert {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.sidebar-btn,
+.leap-toggle-btn {
+  border-radius: 4px !important;
+}
+
+/* ==========================================================================
+   DIRECTOR'S DIRECTIVE: FLATTEN CODE CONSOLES & FIX NESTED BORDERS
+   ========================================================================== */
+.leap-source-evidence,
+div[id^="source-evidence"],
+section[id^="source-evidence"],
+section#source-evidence,
+.source-code-dropdown,
+.leap-code-lineage,
+div[class^="highlight"],
+.highlight {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  border: 1px solid #2C3E50 !important;
+  background-color: #1E1E2E !important;
+  padding: 0 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+div[class^="highlight"] pre,
+.highlight pre,
+.leap-code-lineage pre,
+.code-panel pre,
+.evidence-inline pre,
+#source-evidence pre,
+#source-evidence .highlight pre,
+#source-evidence div[class^="highlight"] pre,
+section#source-evidence .highlight pre,
+section#source-evidence div[class^="highlight"] pre,
+.source-code-dropdown pre {
+  border: none !important;
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 18px !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+div[class^="highlight"] pre code,
+.highlight pre code,
+.leap-code-lineage pre code,
+#source-evidence pre code,
+.source-code-dropdown pre code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+section#source-evidence .source-code-dropdown,
+section#source-evidence div[class^="highlight"],
+section#source-evidence .highlight,
+.source-code-dropdown div[class^="highlight"],
+.source-code-dropdown .highlight,
+.evidence-inline pre {
+  border: none !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ==========================================================================
+   LEAP AXIS DESIGN CORE: ABSOLUTE SMOOTHING & NESTING ELIMINATION
+   ========================================================================== */
+.leap-source-evidence,
+div[id^="source-evidence"],
+section[id^="source-evidence"],
+section#source-evidence,
+.source-code-dropdown,
+.leap-code-lineage,
+div[class^="highlight"],
+.highlight {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  border: 1px solid #2C3E50 !important;
+  background-color: #1E1E2E !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+section#source-evidence .source-code-dropdown,
+section#source-evidence div[class^="highlight"],
+section#source-evidence .highlight,
+.source-code-dropdown div[class^="highlight"],
+.source-code-dropdown .highlight {
+  border: none !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+div[class^="highlight"] pre,
+.highlight pre,
+.leap-code-lineage pre,
+.code-panel pre,
+.evidence-inline pre,
+#source-evidence pre,
+#source-evidence .highlight pre,
+#source-evidence div[class^="highlight"] pre,
+section#source-evidence .highlight pre,
+section#source-evidence div[class^="highlight"] pre,
+.source-code-dropdown pre {
+  border: none !important;
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 18px !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+div[class^="highlight"] pre code,
+.highlight pre code,
+.leap-code-lineage pre code,
+#source-evidence pre code,
+.source-code-dropdown pre code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+section h2,
+.section h2 {
+  position: relative;
+  padding-bottom: 12px;
+  margin-top: 2.8rem;
+  margin-bottom: 1.6rem;
+  color: #2C3E50;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+section h2::after,
+.section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: #004E5A;
+  border-radius: 2px;
+}
+
+/* Keep executive/cards light. Only code and source evidence use the dark console shell above. */
+.sidebar-card,
+.leap-nav-card,
+.formula-panel,
+.review-queue-card {
+  background-color: #FFFFFF !important;
+  color: var(--charcoal) !important;
+  border: 1px solid var(--platinum-border) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.formula-panel {
+  background-color: var(--container-bg) !important;
+}
+
+.sidebar-card h3,
+.formula-panel .leap-card-title,
+.review-queue-card h3,
+.sidebar-card .meta-value,
+.sidebar-card .meta-label,
+.formula-panel .micro-label {
+  color: inherit !important;
+}
+
+.sidebar-card h3,
+.sidebar-card .meta-label,
+.formula-panel .micro-label {
+  color: var(--slate-muted) !important;
+}
+
+.sidebar-card .meta-value,
+.formula-panel .leap-card-title {
+  color: #1E293B !important;
+}
+
+.data-status-alert,
+.review-queue-card.data-status-alert {
+  background-color: #FFF9E6 !important;
+  color: #92400E !important;
+  border: 1px solid #FDE68A !important;
+  border-left: 4px solid #D97706 !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.sidebar-card h3::after,
+.formula-panel .leap-card-title::after {
+  background-color: #004E5A !important;
+}
+
+@media print {
+  :root {
+    --charcoal: #1C1D20;
+    --teal: #004E5A;
+    --border: #E1E8ED;
+    --bg: #FFFFFF;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 20mm 15mm 20mm 15mm;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  html,
+  body {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #FFFFFF !important;
+    color: var(--charcoal) !important;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .leap-topbar,
+  .leap-exec-bar,
+  .sidebar-card.action-card,
+  .leap-toggle-container,
+  .leap-footer-shell,
+  .leap-footer,
+  .leap-report-nav,
+  .source-code-dropdown summary,
+  button,
+  nav {
+    display: none !important;
+  }
+
+  main,
+  .leap-main,
+  .leap-doc-main,
+  .page-wrapper,
+  .content-layout,
+  .leap-shell,
+  .leap-page,
+  .rst-content {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #FFFFFF !important;
+    overflow: visible !important;
+  }
+
+  .dossier-grid,
+  .leap-doc-grid,
+  .page-index .leap-doc-grid,
+  .stack,
+  .right-rail {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .leap-doc-primary,
+  .dossier-card,
+  .formula-panel,
+  .leap-side-card,
+  .sidebar-card {
+    background: #FFFFFF !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 0 !important;
+    color: var(--charcoal) !important;
+    overflow: visible !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .leap-doc-primary,
+  .dossier-card {
+    padding: 14pt !important;
+    margin: 0 0 14pt 0 !important;
+  }
+
+  .formula-panel {
+    padding: 12pt !important;
+    margin: 10pt 0 14pt !important;
+    background: #FAFAFA !important;
+  }
+
+  .leap-metadata-sidebar,
+  .leap-doc-aside {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 18pt 0 0 0 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .sidebar-card {
+    padding: 11pt !important;
+    margin: 0 0 10pt 0 !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  .section-header,
+  .sidebar-card h3 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  section,
+  article,
+  aside,
+  .kpi-container,
+  .formula-panel,
+  .literate-step,
+  .semantic-grid,
+  .dependency-row,
+  .sidebar-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .dossier-head h2,
+  .leap-dossier-title h1 {
+    color: var(--charcoal) !important;
+    font-size: 18pt !important;
+    margin-bottom: 4pt !important;
+  }
+
+  .dossier-head p,
+  .leap-dossier-title p,
+  .micro-label,
+  .sidebar-card h3,
+  .meta-label {
+    color: #475569 !important;
+  }
+
+  .leap-annotated-formula-wrapper,
+  .leap-annotated-equation {
+    border: 1px solid var(--border) !important;
+    background: #FAFAFA !important;
+    overflow: visible !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    padding: 10pt !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .leap-formula-node {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .leap-math-lbl {
+    background: #E2E8F0 !important;
+    border: 1px solid var(--border) !important;
+    color: var(--charcoal) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .leap-math-pointer {
+    border-left-color: var(--teal) !important;
+  }
+
+  .leap-math-render,
+  .math-equation,
+  mjx-container {
+    color: var(--charcoal) !important;
+    overflow: visible !important;
+    max-width: 100% !important;
+  }
+
+  pre,
+  code,
+  .highlight,
+  .highlight pre,
+  .source-code-dropdown,
+  .source-code-dropdown .highlight {
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow: visible !important;
+    background: #F8FAFC !important;
+    color: var(--charcoal) !important;
+    border-color: var(--border) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  a,
+  a:visited {
+    color: var(--charcoal) !important;
+    text-decoration: none !important;
+  }
+}
+
+/* --- LEAP PHASE 1 FIXES --- */
+.kpi-dossier-card { border: 1px solid #E2E8F0 !important; border-radius: 8px !important; padding: 24px !important; }
+.leap-exec-bar { border-bottom: 2px solid #004E5A !important; }

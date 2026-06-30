@@ -1,0 +1,4 @@
+-- KPI: Compressor Availability %
+SELECT (uptime_hours / NULLIF(uptime_hours + downtime_hours,0)) * 100 AS [Compressor Availability %]
+FROM (SELECT 720 AS uptime_hours, 24 AS downtime_hours) d;
+GO

@@ -1,0 +1,4 @@
+-- KPI184: # Days To Payables (DTP)
+SELECT
+    (AccountsPayable / COGS) * 365 AS DaysToPayables
+FROM finance;

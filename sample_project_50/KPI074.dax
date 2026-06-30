@@ -1,0 +1,2 @@
+-- KPI074: # Production Loss
+ProductionLoss = SUM(Production[PlannedOutput]) - SUM(Production[ActualOutput])

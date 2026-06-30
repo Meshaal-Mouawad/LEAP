@@ -1,0 +1,4 @@
+-- KPI182: # Days To Cash (DTC)
+SELECT
+    (AccountsReceivable / SalesRevenue) * 365 AS DaysToCash
+FROM finance;

@@ -1,0 +1,4 @@
+-- KPI: Steam-to-Ethylene Ratio
+SELECT CAST(steam AS FLOAT) / NULLIF(CAST(ethylene AS FLOAT), 0) AS [Steam-to-Ethylene Ratio]
+FROM (SELECT 1.8 AS steam, 1.0 AS ethylene) x;
+GO

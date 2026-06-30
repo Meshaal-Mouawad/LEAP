@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LEAP Global Overview & Directory Browser</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --canvas: #FDFDFD;
+      --panel: #F6F7F9;
+      --border: #E9ECEF;
+      --text: #1C1D20;
+      --metadata: #8B93A7;
+      --success: #0D9488;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --info: #3B82F6;
+      --raci-r: #0D9488;
+      --raci-a: #1C1D20;
+      --raci-c: #E2E8F0;
+      --raci-i: #F4F5F7;
+      --code-bg: #111827;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--canvas);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    .font-mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .leap-brand-icon {
+      width: auto;
+      max-width: 210px;
+      height: 40px;
+      display: block;
+      flex: 0 0 auto;
+    }
+    .text-metadata { color: var(--metadata); }
+    .bg-panel { background-color: var(--panel); }
+    .bg-canvas { background-color: var(--canvas); }
+    .border-default { border-color: var(--border); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .375rem;
+      height: 40px;
+      min-height: 40px;
+      padding: 0 .875rem;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background-color .15s ease, border-color .15s ease;
+    }
+    .btn:hover { background: #ECEEF1; }
+    .btn:disabled { cursor: not-allowed; opacity: .65; }
+    .btn-primary {
+      background: #2563EB;
+      color: #fff;
+      border-color: #2563EB;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, .08);
+    }
+    .btn-primary:hover {
+      background: #1D4ED8;
+      border-color: #1D4ED8;
+    }
+    .launchpad-actions {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      align-items: stretch;
+    }
+    .launchpad-actions .btn,
+    .launchpad-actions .btn-governance {
+      width: 100%;
+      min-width: 0;
+      height: 44px;
+      min-height: 44px;
+      padding: 0 8px;
+      border-radius: 4px;
+      font-size: 10.5px;
+      line-height: 1.15;
+      text-align: center;
+      white-space: normal;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: .125rem .5rem;
+      border: 1px solid var(--border);
+      font-size: 11px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .badge-growth,
+    .badge-success {
+      background-color: #F0FDFA;
+      color: var(--success);
+      border-color: #CCFBF1;
+    }
+    .badge-warning {
+      background-color: #FFFBEB;
+      color: var(--warning);
+      border-color: #FEF3C7;
+    }
+    .badge-danger {
+      background-color: #FEF2F2;
+      color: var(--danger);
+      border-color: #FEE2E2;
+    }
+    .badge-info {
+      background-color: #EFF6FF;
+      color: var(--info);
+      border-color: #DBEAFE;
+    }
+
+    .card {
+      background: var(--canvas);
+      border: 1px solid var(--border);
+    }
+    .dashboard-stat-card {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+    .dashboard-stat-heading {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+    .leap-stat-icon {
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 28px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+    }
+    .leap-stat-icon img {
+      width: 16px;
+      height: 16px;
+      display: block;
+    }
+    .card-soft {
+      background: var(--panel);
+      border: 1px solid var(--border);
+    }
+    .kpi-value {
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .tab {
+      padding: .625rem 1rem;
+      border: 1px solid transparent;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: -1px;
+      cursor: pointer;
+      color: var(--metadata);
+      font-size: 13px;
+      font-weight: 500;
+      transition: all .15s ease;
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active {
+      color: var(--text);
+      border-color: var(--border);
+      border-bottom-color: var(--canvas);
+      background: var(--canvas);
+    }
+    .input {
+      width: 100%;
+      height: 40px;
+      min-height: 40px;
+      padding: 0 .75rem;
+      border: 1px solid var(--border);
+      background: var(--canvas);
+      color: var(--text);
+      font-size: 13px;
+      outline: none;
+    }
+    .input:focus { border-color: var(--text); }
+    .select {
+      height: 40px;
+      min-height: 40px;
+      padding: 0 2rem 0 .75rem;
+      border: 1px solid var(--border);
+      background: var(--canvas);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 13px;
+      outline: none;
+    }
+    .icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--success);
+      display: inline-block;
+    }
+    .status-dot.warning { background-color: var(--warning); }
+    .status-dot.info { background-color: var(--info); }
+    .confidence-meter {
+      height: 4px;
+      background: var(--border);
+      overflow: hidden;
+    }
+    .confidence-fill {
+      height: 100%;
+      background: var(--success);
+      transition: width .4s ease;
+    }
+    .directory-item {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .625rem .75rem;
+      border-left: 3px solid transparent;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      transition: border-color .15s ease, color .15s ease, background .15s ease;
+    }
+    .directory-item:last-child { border-bottom: 0; }
+    .directory-item:hover,
+    .directory-item:focus-visible {
+      background: transparent;
+      border-left-color: #0D9488;
+      color: #0D9488;
+      outline: none;
+    }
+    .raci-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      font-weight: 700;
+      font-size: 11px;
+      border-radius: 4px;
+      margin-right: 6px;
+    }
+    .raci-r { background: var(--raci-r); color: white; border-color: var(--raci-r); }
+    .raci-a { background: var(--raci-a); color: white; border-color: var(--raci-a); }
+    .raci-c { background: var(--raci-c); color: #475569; border: 1px solid #CBD5E1; }
+    .raci-i { background: var(--raci-i); color: #64748B; }
+    .terminal {
+      min-height: 520px;
+      max-height: 720px;
+      overflow: auto;
+      border: 1px solid var(--text);
+      background: var(--code-bg);
+      color: #D1D5DB;
+      padding: 14px;
+    }
+    .log-line {
+      min-height: 19px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #D1D5DB;
+    }
+    .log-line-success { color: #5EEAD4; }
+    .log-line-action { color: #93C5FD; }
+    .log-line-warning { color: #FCD34D; }
+    .log-line-error { color: #FCA5A5; }
+    .btn-governance {
+      flex: 0 0 auto;
+      background-color: #E2E8F0;
+      color: #2C3E50;
+      border: 1px solid #CBD5E0;
+      border-radius: 4px;
+      padding: 10px 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .btn-governance:hover,
+    .btn-governance:focus-visible {
+      background-color: #CBD5E1;
+      outline: none;
+    }
+    @media (max-width: 1180px) {
+      .launchpad-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    .hide { display: none; }
+    .topbar {
+      width: 100%;
+      background: #FFFFFF;
+      color: #1C1D20;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .topbar-inner {
+      max-width: 1440px;
+      min-height: 52px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .topbar .btn {
+      background: #F8FAFC;
+      border-color: #E2E8F0;
+      color: #1E293B;
+    }
+    .topbar .btn:hover { background: #F1F5F9; }
+    .topbar .btn-primary {
+      background: #2563EB;
+      border-color: #2563EB;
+      color: #fff;
+    }
+    .topbar .btn-primary:hover {
+      background: #1D4ED8;
+      border-color: #1D4ED8;
+    }
+
+    @media (max-width: 768px) {
+      .hide-mobile { display: none; }
+      .kpi-value { font-size: 24px; }
+      .btn-governance {
+        width: 100%;
+      }
+      .launchpad-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen flex flex-col">
+    <header class="topbar sticky top-0 z-20">
+      <div class="topbar-inner px-4 md:px-6">
+          <div class="flex items-center gap-3">
+            <img src="/bluebook/_static/leap-axis-logo.svg" alt="LEAP AXIS KPI Intelligence System" class="leap-brand-icon">
+          </div>
+          <div class="flex items-center gap-2">
+            <a id="open-link" href="/bluebook/index.html" target="_blank" class="btn hide-mobile">
+              Open Bluebook
+            </a>
+            <button class="btn hide-mobile" type="button" data-tab-target="directory">Directory</button>
+            <button class="btn btn-primary" type="button" onclick="document.getElementById('path').focus()">New Scan</button>
+          </div>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-[1440px] w-full mx-auto px-4 md:px-6 py-6">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div class="card p-4 dashboard-stat-card">
+          <div class="dashboard-stat-heading">
+            <span class="leap-stat-icon"><img src="/bluebook/_static/leap-icon-kpi-count.svg" alt=""></span>
+            <span class="text-xs text-metadata uppercase tracking-wide">KPIs Detected</span>
+          </div>
+          <div id="kpi-count" class="kpi-value">0</div>
+          <div class="mt-2 flex items-center gap-1.5">
+            <span class="badge badge-growth">Offline</span>
+            <span class="text-xs text-metadata">local extraction</span>
+          </div>
+        </div>
+        <div class="card p-4 dashboard-stat-card">
+          <div class="dashboard-stat-heading">
+            <span class="leap-stat-icon"><img src="/bluebook/_static/leap-icon-governance-layer.svg" alt=""></span>
+            <span class="text-xs text-metadata uppercase tracking-wide">Source Files</span>
+          </div>
+          <div id="source-count" class="kpi-value">--</div>
+          <div class="mt-2 flex items-center gap-1.5">
+            <span class="badge badge-info">Scan</span>
+            <span class="text-xs text-metadata">selected files</span>
+          </div>
+        </div>
+        <div class="card p-4 dashboard-stat-card">
+          <div class="dashboard-stat-heading">
+            <span class="leap-stat-icon"><img src="/bluebook/_static/leap-icon-governance-layer.svg" alt=""></span>
+            <span class="text-xs text-metadata uppercase tracking-wide">Discovery Confidence</span>
+          </div>
+          <div id="confidence-count" class="kpi-value">--</div>
+          <div class="mt-2">
+            <div class="confidence-meter"><div id="confidence-fill" class="confidence-fill" style="width: 0%;"></div></div>
+            <div class="text-xs text-metadata mt-2">average extraction confidence</div>
+          </div>
+        </div>
+        <div class="card p-4 dashboard-stat-card">
+          <div class="dashboard-stat-heading">
+            <span class="leap-stat-icon"><img src="/bluebook/_static/leap-icon-system-mode.svg" alt=""></span>
+            <span class="text-xs text-metadata uppercase tracking-wide">Build Status</span>
+          </div>
+          <div id="build-state" class="kpi-value">Idle</div>
+          <div class="mt-2 flex items-center gap-1.5">
+            <span id="run-badge" class="badge">Ready</span>
+            <span class="text-xs text-metadata">Sphinx output</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-b border-default mb-6">
+        <div class="flex gap-1 overflow-x-auto">
+          <div class="tab active" data-tab="overview">Discovery & Audits</div>
+          <div class="tab" data-tab="directory">Key Performance Indicators</div>
+          <div class="tab" data-tab="raci">RACI Matrix</div>
+          <div class="tab" data-tab="analytics">Analytics</div>
+          <div class="tab" data-tab="reports">Reports</div>
+        </div>
+      </div>
+
+      <div id="tab-overview" class="tab-content">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-4 space-y-6">
+            <section class="card p-5">
+              <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                <div>
+                  <h2 class="text-sm font-semibold">KPI Discovery Launchpad</h2>
+                  <p class="text-sm text-metadata mt-1">Select a software folder. LEAP scans locally, ignores non-KPI files, maps RACI ownership, and builds the Bluebook.</p>
+                </div>
+                <span class="badge badge-success">Offline Ready</span>
+              </div>
+              <form id="generator-form" class="space-y-3">
+                <div>
+                  <label for="path" class="text-xs text-metadata uppercase tracking-wide">Project Folder Path</label>
+                  <input type="text" name="path" id="path" required class="input font-mono mt-2" placeholder="/Users/name/project">
+                </div>
+                <div class="launchpad-actions">
+                  <button type="submit" id="submit-btn" class="btn btn-primary">Generate Bluebook</button>
+                  <a href="/bluebook/index.html" target="_blank" class="btn">Open Existing Bluebook</a>
+                  <button type="button" class="btn" data-tab-target="directory">View Directory Scope</button>
+                  <button id="btn-purge-workspace" type="button" onclick="triggerCleanSlatePurge()" class="btn-governance">
+                    Clear Build &amp; Start Fresh
+                  </button>
+                </div>
+              </form>
+            </section>
+
+            <section class="card p-5">
+              <h2 class="text-sm font-semibold mb-4">Status Distribution</h2>
+              <div class="space-y-3">
+                <div>
+                  <div class="flex items-center justify-between text-sm mb-1.5">
+                    <span>All filesystem files</span>
+                    <span id="all-files" class="font-mono font-medium">--</span>
+                  </div>
+                  <div class="h-1.5 bg-panel border border-default"><div class="h-full" style="background: var(--success); width: 100%;"></div></div>
+                </div>
+                <div>
+                  <div class="flex items-center justify-between text-sm mb-1.5">
+                    <span>After directory exclusions</span>
+                    <span id="eligible-files" class="font-mono font-medium">--</span>
+                  </div>
+                  <div class="h-1.5 bg-panel border border-default"><div class="h-full" style="background: var(--info); width: 62%;"></div></div>
+                </div>
+                <div>
+                  <div class="flex items-center justify-between text-sm mb-1.5">
+                    <span>Lines analyzed</span>
+                    <span id="line-count" class="font-mono font-medium">--</span>
+                  </div>
+                  <div class="h-1.5 bg-panel border border-default"><div class="h-full" style="background: var(--warning); width: 48%;"></div></div>
+                </div>
+              </div>
+            </section>
+
+            <section class="card p-5">
+              <h2 class="text-sm font-semibold mb-4">Quick Actions</h2>
+              <div class="space-y-2">
+                <button class="btn w-full justify-start" type="button" onclick="document.getElementById('path').focus()">Create New Scan</button>
+                <a class="btn w-full justify-start" href="/bluebook/discovery_report.html" target="_blank">Open Discovery Report</a>
+                <a class="btn w-full justify-start" href="/bluebook/index.html" target="_blank">Open Bluebook Index</a>
+                <a class="btn w-full justify-start" href="/bluebook/raci_directory.html" target="_blank">Open RACI Directory</a>
+                <button class="btn w-full justify-start" type="button" data-tab-target="raci">Review Governance Matrix</button>
+              </div>
+            </section>
+          </div>
+
+          <section class="card p-5 lg:col-span-8">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-sm font-semibold">Execution Terminal</h2>
+                <span id="governance-state" class="badge badge-success">RACI Ready</span>
+              </div>
+              <div class="terminal font-mono" id="log-container">
+                <div id="log"><div class="log-line">Ready to start.</div></div>
+              </div>
+          </section>
+        </div>
+      </div>
+
+      <div id="tab-directory" class="tab-content hide">
+        <div class="card">
+          <div class="p-4 border-b border-default">
+            <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
+              <div class="flex-1">
+                <div class="text-sm font-semibold mb-3">Directory Browser</div>
+                <input type="text" class="input" placeholder="Search generated reports, dossiers, or scan artifacts..." id="directory-search">
+              </div>
+              <div class="flex items-center gap-2">
+                <select class="select">
+                  <option>All Types</option>
+                  <option>KPI Dossiers</option>
+                  <option>Reports</option>
+                  <option>Governance</option>
+                </select>
+                <a class="btn" href="/bluebook/index.html" target="_blank">Open</a>
+              </div>
+            </div>
+          </div>
+          <div id="directory-list">
+            <a class="directory-item" href="/bluebook/index.html" target="_blank">
+              <span class="status-dot"></span>
+              <div class="flex-1 min-w-0">
+                <div class="text-sm font-medium">Bluebook Index</div>
+                <div class="text-xs text-metadata">Generated Sphinx documentation home</div>
+              </div>
+              <span class="badge badge-success">HTML</span>
+            </a>
+            <a class="directory-item" href="/bluebook/discovery_report.html" target="_blank">
+              <span class="status-dot info"></span>
+              <div class="flex-1 min-w-0">
+                <div class="text-sm font-medium">Discovery Report</div>
+                <div class="text-xs text-metadata">Scan summary, coverage, confidence, duplicate inventory</div>
+              </div>
+              <span class="badge badge-info">Audit</span>
+            </a>
+            <a class="directory-item" href="/bluebook/raci_directory.html" target="_blank">
+              <span class="status-dot"></span>
+              <div class="flex-1 min-w-0">
+                <div class="text-sm font-medium">RACI Stakeholder Directory</div>
+                <div class="text-xs text-metadata">Governance owners, corporate contacts, and assigned KPI scope</div>
+              </div>
+              <span class="badge badge-success">Admin</span>
+            </a>
+            <div class="directory-item">
+              <span class="status-dot"></span>
+              <div class="flex-1 min-w-0">
+                <div class="text-sm font-medium">Governance Overrides</div>
+                <div class="text-xs text-metadata">docs/governance_overrides.json</div>
+              </div>
+              <span class="badge badge-success">RACI</span>
+            </div>
+            <div class="directory-item">
+              <span class="status-dot warning"></span>
+              <div class="flex-1 min-w-0">
+                <div class="text-sm font-medium">Offline AI Layer</div>
+                <div class="text-xs text-metadata">Optional model descriptions disabled by design</div>
+              </div>
+              <span class="badge badge-warning">Offline</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-raci" class="tab-content hide">
+        <div class="card p-5">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-sm font-semibold">RACI Matrix - KPI Governance</h2>
+            <a class="btn" href="/bluebook/raci_directory.html" target="_blank">Open Stakeholder Directory</a>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-default">
+                  <th class="text-left py-3 px-3 font-medium text-metadata text-xs uppercase">Activity</th>
+                  <th class="text-center py-3 px-3 font-medium text-metadata text-xs uppercase">Data Eng</th>
+                  <th class="text-center py-3 px-3 font-medium text-metadata text-xs uppercase">Domain Owner</th>
+                  <th class="text-center py-3 px-3 font-medium text-metadata text-xs uppercase">SME</th>
+                  <th class="text-center py-3 px-3 font-medium text-metadata text-xs uppercase">Executive</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-default">
+                  <td class="py-3 px-3">KPI extraction and code lineage</td>
+                  <td class="text-center py-3 px-3"><span class="raci-badge raci-r">R</span></td>
+                  <td class="text-center py-3 px-3"><span class="raci-badge raci-a">A</span></td>
+                  <td class="text-center py-3 px-3"><span class="raci-badge raci-c">C</span></td>
+                  <td class="text-center py-3 px-3"><span class="raci-badge raci-i">I</span></td>
+                </tr>
+                <tr class="border-b border-default">
+                  <td class="py-3 px-3">Formula validation</td>
+                  <td class="text-center py-3 px-3"><span class="raci-badge raci-c">C</span></td>
+                  <td class="text-center py-3 px-3"><span class="raci-badge raci-a">A</span></td>
+                  <td class="text-center py-3 px-3"><span class="raci-badge raci-r">R</span></td>
+                  <td class="text-center py-3 px-3"><span class="raci-badge raci-i">I</span></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3">Bluebook publication</td>
+                  <td class="text-center py-3 px-3"><span class="raci-badge raci-r">R</span></td>
+                  <td class="text-center py-3 px-3"><span class="raci-badge raci-a">A</span></td>
+                  <td class="text-center py-3 px-3"><span class="raci-badge raci-c">C</span></td>
+                  <td class="text-center py-3 px-3"><span class="raci-badge raci-i">I</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-analytics" class="tab-content hide">
+        <div class="card p-5">
+          <h2 class="text-sm font-semibold mb-4">Analytics Dashboard</h2>
+          <p class="text-sm text-metadata">Live scan metrics update after each generation. The core pipeline is offline-first; optional AI descriptions remain disabled unless a key is intentionally configured.</p>
+        </div>
+      </div>
+
+      <div id="tab-reports" class="tab-content hide">
+        <div class="card p-5">
+          <h2 class="text-sm font-semibold mb-4">Report Center</h2>
+          <p class="text-sm text-metadata">Use the generated Bluebook and Discovery Report for review, publication, and JSS paper evidence.</p>
+        </div>
+      </div>
+    </main>
+
+    <footer style="background-color: #FAFAFA; border-top: 1px solid #E2E8F0; padding: 48px 24px 24px 24px; font-family: 'Inter', -apple-system, sans-serif; box-sizing: border-box; width: 100%;">
+
+      <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 32px; padding-bottom: 40px;">
+
+        <div>
+          <h5 style="color: #2C3E50; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 16px 0;">Company</h5>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 0.8rem;">
+            <li><a href="#" style="color: #718096; text-decoration: none;">About LEAP AXIS</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">News & Press</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">Privacy at LEAP</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 style="color: #2C3E50; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 16px 0;">Developers</h5>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 0.8rem;">
+            <li><a href="#" style="color: #718096; text-decoration: none;">KPI Academy</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">GitHub Repository</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">LEAP Open Source Core</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">Data Architecture</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">AST Parser Extensions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 style="color: #2C3E50; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 16px 0;">Resources</h5>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 0.8rem;">
+            <li><a href="#" style="color: #718096; text-decoration: none;">Engineering Blog</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">Industrial Best Practices</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">Deterministic KPI Generators</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">Blueprint Templates</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">Affiliate Integration</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">Resource Library</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">Climate Disclosure Statement</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 style="color: #2C3E50; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 16px 0;">Use Cases</h5>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 0.8rem;">
+            <li><a href="#" style="color: #718096; text-decoration: none;">Agile Operations</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">Strategic Enterprise Planning</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">Oil & Gas Systems</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">Educational Infrastructure</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">Healthcare Analytics</a></li>
+            <li><a href="#" style="color: #718096; text-decoration: none;">National Security Frameworks</a></li>
+          </ul>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div>
+            <h5 style="color: #2C3E50; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 12px 0;">National Alignment</h5>
+            <div style="font-size: 0.75rem; color: #718096; line-height: 1.4; border-left: 2px solid #14B8A6; padding-left: 10px;">
+              Engineered to support digital transformation pillars of <strong style="color: #2C3E50;">Saudi Vision 2030</strong> and the National Sign-on Platform paradigms.
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px; margin-top: 4px;">
+            <a href="#" style="color: #2C3E50; opacity: 0.7;" title="X"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" style="color: #2C3E50; opacity: 0.7;" title="YouTube"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="#" style="color: #2C3E50; opacity: 0.7;" title="Instagram"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+            <a href="#" style="color: #2C3E50; opacity: 0.7;" title="GitHub"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="max-width: 1200px; margin: 0 auto; padding-top: 24px; border-top: 1px solid #E2E8F0; display: flex; flex-direction: column; gap: 16px;">
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+          <div style="font-size: 0.72rem; color: #A0AEC0; line-height: 1.4;">
+            <span style="font-weight: 600; color: #2C3E50;">LEAP AXIS Architectural Bluebook</span> &bull; Security State: <span style="color: #14B8A6; font-weight: 600;">AI-NO Offline Mode (Deterministic AST Engine)</span>
+          </div>
+
+          <div style="display: flex; gap: 16px; align-items: center; opacity: 0.75; font-size: 0.65rem; font-weight: 600; color: #2C3E50; letter-spacing: 0.05em;">
+            <span>SDAIA PDPL</span>
+            <span>NCA ECC</span>
+            <span>ISO 22400</span>
+            <span>SOC 2 TYPE II</span>
+            <span>W3C SEMANTIC</span>
+            <span>PEP 8 COMPLIANT</span>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 0.72rem;">
+          <div style="display: flex; flex-wrap: wrap; gap: 14px; margin: 0; padding: 0;">
+            <a href="#" style="color: #718096; text-decoration: none;">Privacy Statement</a>
+            <a href="#" style="color: #718096; text-decoration: none;">Terms of Use</a>
+            <a href="#" style="color: #718096; text-decoration: none;">Trademarks & IP</a>
+            <a href="#" style="color: #718096; text-decoration: none;">Safety & Eco Guidelines</a>
+            <a href="#" style="color: #718096; text-decoration: none;">Sitemap</a>
+            <a href="#" style="color: #718096; text-decoration: none;">Contract Procurement</a>
+            <a href="#" style="color: #718096; text-decoration: none;">Documentation Index</a>
+            <a href="#" style="color: #718096; text-decoration: none;">Manage Cookies</a>
+            <a href="#" style="color: #718096; text-decoration: none;">Do Not Sell My Info</a>
+            <a href="#" style="color: #718096; text-decoration: none;">Modern Slavery Statement</a>
+          </div>
+          <div style="color: #A0AEC0;">&copy; 2026 LEAP AXIS. All rights reserved.</div>
+        </div>
+
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const form = document.getElementById('generator-form');
+    const logEl = document.getElementById('log');
+    const submitBtn = document.getElementById('submit-btn');
+    const runBadge = document.getElementById('run-badge');
+    const kpiCount = document.getElementById('kpi-count');
+    const sourceCount = document.getElementById('source-count');
+    const buildState = document.getElementById('build-state');
+    const governanceState = document.getElementById('governance-state');
+    const allFiles = document.getElementById('all-files');
+    const eligibleFiles = document.getElementById('eligible-files');
+    const lineCount = document.getElementById('line-count');
+    const confidenceCount = document.getElementById('confidence-count');
+    const confidenceFill = document.getElementById('confidence-fill');
+    let intervalId;
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab').forEach((tab) => tab.classList.toggle('active', tab.dataset.tab === tabName));
+      document.querySelectorAll('.tab-content').forEach((content) => content.classList.add('hide'));
+      const target = document.getElementById('tab-' + tabName);
+      if (target) target.classList.remove('hide');
+    }
+
+    document.querySelectorAll('.tab').forEach((tab) => tab.addEventListener('click', () => switchTab(tab.dataset.tab)));
+    document.querySelectorAll('[data-tab-target]').forEach((btn) => btn.addEventListener('click', () => switchTab(btn.dataset.tabTarget)));
+
+    function extractNumber(pattern, text) {
+      const match = text.match(pattern);
+      return match ? match[1] : null;
+    }
+
+    function setText(el, value) {
+      if (value) el.textContent = value;
+    }
+
+    function resetDashboardSummary() {
+      [kpiCount, sourceCount, allFiles, eligibleFiles, lineCount, confidenceCount].forEach((el) => {
+        if (el) el.textContent = '--';
+      });
+      if (confidenceFill) confidenceFill.style.width = '0%';
+      buildState.textContent = 'Idle';
+      governanceState.textContent = 'RACI Ready';
+      runBadge.className = 'badge';
+      runBadge.textContent = 'Ready';
+    }
+
+    async function triggerCleanSlatePurge() {
+      const btn = document.getElementById('btn-purge-workspace');
+      if (!btn) return;
+
+      if (!confirm('Are you sure you want to delete all compiled files in docs/_build? This forces a true clean compilation pass.')) {
+        return;
+      }
+
+      const originalText = btn.textContent;
+      btn.disabled = true;
+      btn.style.backgroundColor = '#1E1E2E';
+      btn.style.borderColor = '#1E1E2E';
+      btn.style.color = '#CDD6F4';
+      btn.textContent = 'Purging Workspace...';
+
+      try {
+        const response = await fetch('/api/workspace/purge', { method: 'POST' });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(payload.message || payload.error || 'Purge execution rejected by backend controller.');
+        }
+
+        btn.textContent = 'Wiped Clean!';
+        btn.style.backgroundColor = '#0F766E';
+        btn.style.borderColor = '#0F766E';
+        btn.style.color = '#FFFFFF';
+        renderLog(payload.message || 'Docs _build cleared successfully. Ready for a fresh scan.');
+        resetDashboardSummary();
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.style.backgroundColor = '#E2E8F0';
+          btn.style.borderColor = '#CBD5E0';
+          btn.style.color = '#2C3E50';
+          btn.textContent = originalText;
+        }, 1400);
+      } catch (err) {
+        console.error(err);
+        btn.textContent = 'Purge Failed';
+        btn.style.backgroundColor = '#94064D';
+        btn.style.borderColor = '#94064D';
+        btn.style.color = '#FFFFFF';
+        renderLog(`Error: ${err.message || err}`);
+        runBadge.className = 'badge badge-danger';
+        runBadge.textContent = 'Error';
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.style.backgroundColor = '#E2E8F0';
+          btn.style.borderColor = '#CBD5E0';
+          btn.style.color = '#2C3E50';
+          btn.textContent = originalText;
+        }, 1800);
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function classifyLogLine(line) {
+      if (/error|failed|exception/i.test(line)) return 'log-line-error';
+      if (/warning|skipped|not found|inactive/i.test(line) || line.includes('N/A')) return 'log-line-warning';
+      if (/Sphinx build successful|Complete|Governance layer|Rendered|KPIs detected|KPIs extracted/i.test(line)) return 'log-line-success';
+      if (/Generating|Scanning|AI phase|Scanner result|Updated index|Cleaned|Open:/i.test(line)) return 'log-line-action';
+      return '';
+    }
+
+    function renderLog(text) {
+      const lines = String(text || 'Ready to start.').split('\n');
+      logEl.innerHTML = lines.map((line) => {
+        const statusClass = classifyLogLine(line);
+        return `<div class="log-line ${statusClass}">${escapeHtml(line) || '&nbsp;'}</div>`;
+      }).join('');
+    }
+
+    async function fetchStats() {
+      try {
+        const response = await fetch('/api/stats');
+        const stats = await response.json();
+        if (stats.total_kpis !== undefined) kpiCount.textContent = stats.total_kpis;
+        if (stats.total_files !== undefined) sourceCount.textContent = stats.total_files;
+        if (stats.avg_confidence !== undefined) {
+          confidenceCount.textContent = stats.avg_confidence;
+          confidenceFill.style.width = stats.avg_confidence;
+        }
+      } catch (err) {
+        console.error('Failed to fetch stats:', err);
+      }
+    }
+
+    function updateSummary(text, running) {
+      governanceState.textContent = text.includes('Governance layer') ? 'RACI Mapped' : 'RACI Ready';
+      if (text.includes('Sphinx build successful.')) {
+        buildState.textContent = 'Built';
+        runBadge.className = 'badge badge-success';
+        runBadge.textContent = 'Complete';
+      } else if (running) {
+        buildState.textContent = 'Running';
+        runBadge.className = 'badge badge-success';
+        runBadge.textContent = 'Running';
+      } else {
+        buildState.textContent = 'Idle';
+        runBadge.className = 'badge';
+        runBadge.textContent = 'Ready';
+      }
+    }
+
+    async function checkStatus() {
+      const response = await fetch('/status');
+      const data = await response.json();
+      renderLog(data.output);
+      updateSummary(data.output || '', data.running);
+      const logContainer = document.getElementById('log-container');
+      logContainer.scrollTop = logContainer.scrollHeight;
+      if (!data.running) {
+        clearInterval(intervalId);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Generate Bluebook';
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Generating...';
+      renderLog('Starting generation...');
+      updateSummary('Starting generation...', true);
+
+      const response = await fetch('/start', { method: 'POST', body: formData });
+      if (response.ok) {
+        intervalId = setInterval(checkStatus, 1000);
+      } else {
+        const errorData = await response.json().catch(() => ({status: response.statusText}));
+        renderLog(`Error: ${errorData.status || errorData.error || response.statusText}`);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Generate Bluebook';
+        runBadge.className = 'badge badge-danger';
+        runBadge.textContent = 'Error';
+      }
+    });
+
+    checkStatus();
+  </script>
+</body>
+</html>

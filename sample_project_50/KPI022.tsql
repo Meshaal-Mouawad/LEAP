@@ -1,0 +1,4 @@
+-- KPI022: # Days of Working Capital
+SELECT
+    ( (CurrentAssets - CurrentLiabilities) / SalesRevenue ) * 365 AS DaysWorkingCapital
+FROM finance;

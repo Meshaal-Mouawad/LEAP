@@ -1,0 +1,9 @@
+-- KPI: Benzene Purity %
+WITH s AS (
+  SELECT CAST(99.2 AS DECIMAL(5,2)) AS purity
+)
+SELECT purity AS [Benzene Purity %]
+FROM s;
+GO
+-- Also express as (benzenic / total) * 100
+-- SELECT 100.0 * (benzenic / NULLIF(total,0)) AS [Benzene Purity %]

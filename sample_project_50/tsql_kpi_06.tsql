@@ -1,0 +1,4 @@
+-- KPI: Distillation Column Efficiency %
+SELECT (theoretical_stages / NULLIF(actual_stages,0)) * 100 AS [Distillation Column Efficiency %]
+FROM (SELECT 45.0 AS theoretical_stages, 50.0 AS actual_stages) c;
+GO

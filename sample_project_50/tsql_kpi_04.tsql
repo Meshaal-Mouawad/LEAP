@@ -1,0 +1,4 @@
+-- KPI: Flare Reduction %
+SELECT (1 - (flare_volume / NULLIF(total_gas,0))) * 100 AS [Flare Reduction %]
+FROM (SELECT 15.0 AS flare_volume, 100.0 AS total_gas) z;
+GO

@@ -1,0 +1,4 @@
+-- KPI183: # Days Inventory On Hand (DIOH)
+SELECT
+    (Inventory / COGS) * 365 AS DaysInventoryOnHand
+FROM finance;

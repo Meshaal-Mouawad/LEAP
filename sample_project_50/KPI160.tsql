@@ -1,0 +1,4 @@
+-- KPI160: % Working Capital / Sales Revenue
+SELECT
+    (WorkingCapital / SalesRevenue) * 100 AS WCtoSalesRatio
+FROM finance;

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+{%- macro script() %}
+  {%- for js in script_files %}
+    {{ js_tag(js) }}
+  {%- endfor %}
+{%- endmacro %}
+{%- macro css() %}
+  {%- for css in css_files %}
+    {%- if css|attr("filename") %}
+      {%- if "basic.css" not in css.filename %}
+      {{ css_tag(css) }}
+      {%- endif %}
+    {%- else %}
+      {%- if "basic.css" not in css %}
+      <link rel="stylesheet" href="{{ pathto(css, 1)|e }}" type="text/css" />
+      {%- endif %}
+    {%- endif %}
+  {%- endfor %}
+{%- endmacro %}
+<html{% if language is not none %} lang="{{ language }}"{% endif %} data-content_root="{{ content_root }}">
+  <head>
+    <meta charset="{{ encoding }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {{ metatags }}
+    <title>{% if pagename.startswith('_') or pagename not in ['index', 'discovery_report', 'raci_directory', 'search', 'genindex'] %}KPI Definition &amp; Lineage - {{ title|striptags|e }}{% else %}{{ title|striptags|e }}{% if docstitle %} - {{ docstitle|striptags|e }}{% endif %}{% endif %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    {{ css() }}
+    {{ script() }}
+  </head>
+  <body class="leap-doc-body page-{{ pagename|replace('/', '-') }}">
+    {% if pagename.startswith('_') or pagename not in ['index', 'discovery_report', 'raci_directory', 'search', 'genindex'] %}
+      {{ body }}
+    {% else %}
+      <div class="leap-shell">
+        <header class="leap-topbar">
+          <div class="leap-topbar-inner">
+            <div class="leap-brand">
+              <div class="leap-brand-mark">
+                <img src="{{ pathto('_static/leap-axis-logo.svg', 1) }}" alt="LEAP AXIS KPI Intelligence System">
+              </div>
+            </div>
+            <div class="leap-status-row">
+              <span class="leap-confidence-dot"></span>
+              <span>Discovery Confidence</span>
+              <strong>93.2%</strong>
+              <span class="leap-growth-badge">62 KPIs</span>
+            </div>
+          </div>
+        </header>
+
+        <main class="leap-doc-main">
+          {% if pagename == 'index' %}
+            <section class="leap-dossier-title">
+              <h1>LEAP Bluebook Workspace</h1>
+              <p>Generated KPI dossiers, discovery evidence, and governance traceability without the legacy Sphinx navigation frame.</p>
+            </section>
+            <section class="leap-metric-grid blueprint-header-stats">
+              <div class="leap-metric-card metric-indicator-block">
+                <span class="metric-indicator-icon"><img src="{{ pathto('_static/leap-icon-kpi-count.svg', 1) }}" alt=""></span>
+                <span class="metric-indicator-label leap-card-label">KPIs Published</span>
+                <span class="metric-indicator-value leap-card-value">62</span>
+                <span class="leap-card-caption">generated dossier pages</span>
+              </div>
+              <div class="leap-metric-card metric-indicator-block">
+                <span class="metric-indicator-icon"><img src="{{ pathto('_static/leap-icon-governance-layer.svg', 1) }}" alt=""></span>
+                <span class="metric-indicator-label leap-card-label">Governance Layer</span>
+                <span class="metric-indicator-value leap-card-value">RACI</span>
+                <span class="leap-card-caption">rule-based ownership</span>
+              </div>
+              <div class="leap-metric-card metric-indicator-block">
+                <span class="metric-indicator-icon"><img src="{{ pathto('_static/leap-icon-system-mode.svg', 1) }}" alt=""></span>
+                <span class="metric-indicator-label leap-card-label">Mode</span>
+                <span class="metric-indicator-value leap-card-value">Offline</span>
+                <span class="leap-card-caption">local extraction pipeline</span>
+              </div>
+              <div class="leap-metric-card metric-indicator-block">
+                <span class="metric-indicator-icon"><img src="{{ pathto('_static/leap-icon-kpi-count.svg', 1) }}" alt=""></span>
+                <span class="metric-indicator-label leap-card-label">Formula Rendering</span>
+                <span class="metric-indicator-value leap-card-value">MathJax</span>
+                <span class="leap-card-caption">technical equations</span>
+              </div>
+            </section>
+          {% else %}
+            <section class="leap-dossier-title leap-dossier-title-with-badge">
+              <div>
+                <h1>{{ title|striptags }}</h1>
+                {% if pagename == 'raci_directory' %}
+                <p>Stakeholder administration, RACI ownership tiers, and KPI governance assignments.</p>
+                {% else %}
+                <p>Scan summary, source coverage, detection confidence, duplicate inventory, and governance ownership.</p>
+                {% endif %}
+              </div>
+              {% if pagename == 'discovery_report' %}
+              <div class="leap-context-badge" title="Traceability Compass: active analysis and logic tracing">
+                <img src="{{ pathto('_static/leap-logo-traceability-compass.svg', 1) }}" alt="Traceability Compass">
+              </div>
+              {% endif %}
+            </section>
+            {% if pagename == 'discovery_report' %}
+            <nav class="leap-report-nav" aria-label="Discovery report sections">
+              <a href="#scan-overview">Scan Overview</a>
+              <a href="#confidence-summary">Confidence</a>
+              <a href="#languages-detected">Languages</a>
+              <a href="#detection-methods">Methods</a>
+              <a href="#governance-summary">Governance</a>
+              <a href="#possible-duplicate-kpi-names">Duplicates</a>
+              <a href="#kpi-inventory">KPI Inventory</a>
+            </nav>
+            {% endif %}
+          {% endif %}
+
+          <section class="leap-doc-grid">
+            <article class="leap-doc-primary">
+              {{ body }}
+            </article>
+            <aside class="leap-doc-aside leap-metadata-sidebar">
+              <div class="sidebar-card status-card">
+                <h3>System Integrity</h3>
+                <div class="sidebar-status-badge state-extracted">
+                  <span class="status-dot"></span> Extracted
+                </div>
+                <div class="sidebar-meta-row">
+                  <span class="meta-label">Runtime:</span>
+                  <span class="meta-value code-font">Offline</span>
+                </div>
+                <div class="sidebar-meta-row">
+                  <span class="meta-label">Output:</span>
+                  <span class="meta-value">Interactive Bluebook</span>
+                </div>
+                <div class="sidebar-meta-row">
+                  <span class="meta-label">Formula Engine:</span>
+                  <span class="meta-value">MathJax</span>
+                </div>
+              </div>
+
+              <div class="sidebar-card raci-card">
+                <h3>Governance Scope</h3>
+                <div class="sidebar-meta-row">
+                  <span class="meta-label">Responsible:</span>
+                  <span class="meta-value">Data Engineering</span>
+                </div>
+                <div class="sidebar-meta-row">
+                  <span class="meta-label">Accountable:</span>
+                  <span class="meta-value">Domain Owner</span>
+                </div>
+                <div class="sidebar-meta-row">
+                  <span class="meta-label">Consulted:</span>
+                  <span class="meta-value">SME</span>
+                </div>
+                <div class="sidebar-meta-row">
+                  <span class="meta-label">Informed:</span>
+                  <span class="meta-value">Stakeholders</span>
+                </div>
+              </div>
+
+              <div class="sidebar-card action-card">
+                <h3>Operational Actions</h3>
+                <button class="sidebar-btn btn-primary" type="button" onclick="window.print()">Export Certified Bluebook</button>
+                <a class="sidebar-btn btn-secondary" href="{{ pathto('discovery_report') }}">Open Discovery Report</a>
+                <a class="sidebar-btn btn-secondary" href="{{ pathto('raci_directory') }}">Open RACI Directory</a>
+                <a class="sidebar-btn btn-secondary" href="{{ pathto('index') }}">Return to Workspace</a>
+              </div>
+
+              <div class="sidebar-card leap-nav-card">
+                <h3>Navigation Workspace</h3>
+                <div class="leap-nav-group">
+                  <div class="leap-nav-heading">Discovery &amp; Audits</div>
+                  {% set discovery_base = '' if pagename == 'discovery_report' else pathto('discovery_report') %}
+                  <a href="{{ discovery_base or '#' }}">Code Scans</a>
+                  <a href="{{ discovery_base }}#confidence-summary">Extraction History</a>
+                  <a href="{{ discovery_base }}#possible-duplicate-kpi-names">Mismatch Reports</a>
+                </div>
+                <div class="leap-nav-group">
+                  <div class="leap-nav-heading">Key Performance Indicators</div>
+                  <a href="{{ pathto('index') }}">All KPI Bluebook Pages</a>
+                </div>
+              </div>
+            </aside>
+          </section>
+        </main>
+        {% include 'footer.html' %}
+      </div>
+    {% endif %}
+  </body>
+</html>
